@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="lab5ModelStoreContainer" CdmEntityContainer="lab5Entities">
+    <EntitySetMapping Name="catagories">
+      <EntityTypeMapping TypeName="lab5Model.catagory">
+        <MappingFragment StoreEntitySet="catagory">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="lab5Model.order">
+        <MappingFragment StoreEntitySet="order">
+          <ScalarProperty Name="oid" ColumnName="oid" />
+          <ScalarProperty Name="ordername" ColumnName="ordername" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="poes">
+      <EntityTypeMapping TypeName="lab5Model.po">
+        <MappingFragment StoreEntitySet="po">
+          <ScalarProperty Name="poid" ColumnName="poid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="oid" ColumnName="oid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="lab5Model.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cid" ColumnName="cid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uos">
+      <EntityTypeMapping TypeName="lab5Model.uo">
+        <MappingFragment StoreEntitySet="uo">
+          <ScalarProperty Name="uoid" ColumnName="uoid" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="oid" ColumnName="oid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="lab5Model.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="uname" ColumnName="uname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

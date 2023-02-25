@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="lab5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="catagory">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="products" Relationship="Self.FK_product_catagory" FromRole="catagory" ToRole="product" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="oid" />
+    </Key>
+    <Property Name="oid" Type="Int32" Nullable="false" />
+    <Property Name="ordername" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="poes" Relationship="Self.FK_po_order" FromRole="order" ToRole="po" />
+    <NavigationProperty Name="uos" Relationship="Self.FK_uo_order" FromRole="order" ToRole="uo" />
+  </EntityType>
+  <EntityType Name="po">
+    <Key>
+      <PropertyRef Name="poid" />
+    </Key>
+    <Property Name="poid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="oid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK_po_order" FromRole="po" ToRole="order" />
+    <NavigationProperty Name="product" Relationship="Self.FK_po_product" FromRole="po" ToRole="product" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="catagory" Relationship="Self.FK_product_catagory" FromRole="product" ToRole="catagory" />
+    <NavigationProperty Name="poes" Relationship="Self.FK_po_product" FromRole="product" ToRole="po" />
+  </EntityType>
+  <EntityType Name="uo">
+    <Key>
+      <PropertyRef Name="uoid" />
+    </Key>
+    <Property Name="uoid" Type="Int32" Nullable="false" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="oid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK_uo_order" FromRole="uo" ToRole="order" />
+    <NavigationProperty Name="user" Relationship="Self.FK_uo_user" FromRole="uo" ToRole="user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="uid" />
+    </Key>
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="uname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="uos" Relationship="Self.FK_uo_user" FromRole="user" ToRole="uo" />
+  </EntityType>
+  <Association Name="FK_product_catagory">
+    <End Role="catagory" Type="Self.catagory" Multiplicity="1" />
+    <End Role="product" Type="Self.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="catagory">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="cid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_po_order">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="po" Type="Self.po" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="oid" />
+      </Principal>
+      <Dependent Role="po">
+        <PropertyRef Name="oid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_uo_order">
+    <End Role="order" Type="Self.order" Multiplicity="1" />
+    <End Role="uo" Type="Self.uo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="oid" />
+      </Principal>
+      <Dependent Role="uo">
+        <PropertyRef Name="oid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_po_product">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="po" Type="Self.po" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="po">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_uo_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="uo" Type="Self.uo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="uid" />
+      </Principal>
+      <Dependent Role="uo">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="lab5Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="catagories" EntityType="Self.catagory" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="poes" EntityType="Self.po" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="uos" EntityType="Self.uo" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_product_catagory" Association="Self.FK_product_catagory">
+      <End Role="catagory" EntitySet="catagories" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_po_order" Association="Self.FK_po_order">
+      <End Role="order" EntitySet="orders" />
+      <End Role="po" EntitySet="poes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_uo_order" Association="Self.FK_uo_order">
+      <End Role="order" EntitySet="orders" />
+      <End Role="uo" EntitySet="uos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_po_product" Association="Self.FK_po_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="po" EntitySet="poes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_uo_user" Association="Self.FK_uo_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="uo" EntitySet="uos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

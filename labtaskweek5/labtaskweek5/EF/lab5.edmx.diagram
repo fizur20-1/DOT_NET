@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="602bacf3da29462eb4ea2f93e76615aa" Name="Diagram1">
+        <EntityTypeShape EntityType="lab5Model.catagory" Width="1.5" PointX="1.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="lab5Model.order" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="lab5Model.po" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lab5Model.product" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lab5Model.uo" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lab5Model.user" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="lab5Model.FK_product_catagory" ManuallyRouted="false" />
+        <AssociationConnector Association="lab5Model.FK_po_order" ManuallyRouted="false" />
+        <AssociationConnector Association="lab5Model.FK_uo_order" ManuallyRouted="false" />
+        <AssociationConnector Association="lab5Model.FK_po_product" ManuallyRouted="false" />
+        <AssociationConnector Association="lab5Model.FK_uo_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
